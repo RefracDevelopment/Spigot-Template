@@ -1,6 +1,6 @@
 name: ExamplePlugin
 version: ${project.version}
-main: com.refracdev.example.ExamplePlugin
+main: me.refracdevelopment.example.ExamplePlugin
 api-version: 1.13
 authors: [RefracDevelopment]
 description: An Example plugin
