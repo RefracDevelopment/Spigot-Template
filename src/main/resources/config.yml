@@ -1,0 +1,14 @@
+# ExamplePlugin by RefracDevelopment
+#--------------------------------------
+# Placeholders: (PlaceholderAPI is supported)
+# %player% - Get the player name
+# %displayname% - Get the player display name
+# %message% - Get the message
+# %arrow% - Get an arrow for a message
+# %arrow_2% - Get alt arrow for a message
+# %star% - Get a star for a message
+# %circle% - Get a circle for a message
+# %empty% - Disable any message with this placeholder
+#--------------------------------------
+messages:
+  prefix: "<g:#8A2387:#E94057:#F27121>ExamplePlugin"
