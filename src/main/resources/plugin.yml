@@ -1,6 +1,8 @@
 name: ExamplePlugin
-version: ${project.version}
+version: '@version@'
 main: me.refracdevelopment.example.ExamplePlugin
-api-version: 1.13
-authors: [RefracDevelopment]
+author: RefracDevelopment
+api-version: '1.13"
+softdepend:
+  - PlaceholderAPI
 description: An Example plugin
