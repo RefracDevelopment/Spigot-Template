@@ -5,7 +5,6 @@ import dev.rosewood.rosegarden.command.command.BaseCommand;
 import dev.rosewood.rosegarden.command.framework.CommandContext;
 import dev.rosewood.rosegarden.command.framework.RoseCommandWrapper;
 import dev.rosewood.rosegarden.command.framework.annotation.RoseExecutable;
-import dev.rosewood.rosegarden.utils.StringPlaceholders;
 import me.refracdevelopment.example.manager.LocaleManager;
 import me.refracdevelopment.example.utilities.chat.Placeholders;
 import org.bukkit.entity.Player;

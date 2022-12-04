@@ -24,7 +24,7 @@ public class SimpleCommandWrapper extends RoseCommandWrapper {
 
     @Override
     public List<String> getCommandPackages() {
-        return Collections.singletonList("me.refracdevelopment.exampleplugin.commands.command");
+        return Collections.singletonList("me.refracdevelopment.example.commands.command");
     }
 
     @Override
