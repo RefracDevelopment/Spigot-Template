@@ -6,6 +6,7 @@ import dev.rosewood.rosegarden.RosePlugin;
 import dev.rosewood.rosegarden.manager.Manager;
 import dev.rosewood.rosegarden.utils.NMSUtil;
 import lombok.Getter;
+import me.refracdevelopment.example.listeners.JoinListener;
 import me.refracdevelopment.example.manager.CommandManager;
 import me.refracdevelopment.example.manager.ConfigurationManager;
 import me.refracdevelopment.example.manager.LocaleManager;
@@ -48,26 +49,24 @@ public final class ExamplePlugin extends RosePlugin {
             return;
         }
 
-        // Make sure the server is on MC 1.13
-        if (NMSUtil.getVersionNumber() < 13) {
-            Color.log("&cThis plugin only supports 1.13+ Minecraft.");
+        // Make sure the server is on MC 1.16
+        if (NMSUtil.getVersionNumber() < 16) {
+            Color.log("&cThis plugin only supports 1.16+ Minecraft.");
             this.getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
         Color.log("&aLoaded commands.");
         loadListeners();
-        Color.log("&aLoaded listeners.");
-
-        Color.log("&aChecking for updates!");
-        updateCheck(Bukkit.getConsoleSender(), true);
 
         Color.log("&8&m==&c&m=====&f&m======================&c&m=====&8&m==");
         Color.log("&e" + this.getDescription().getName() + " has been enabled. (" + (System.currentTimeMillis() - startTiming) + "ms)");
         Color.log(" &f[*] &6Version&f: &b" + this.getDescription().getVersion());
         Color.log(" &f[*] &6Name&f: &b" + this.getDescription().getName());
-        Color.log(" &f[*] &6Author&f: &b" + this.getDescription().getAuthors());
+        Color.log(" &f[*] &6Author&f: &b" + this.getDescription().getAuthors().get(0));
         Color.log("&8&m==&c&m=====&f&m======================&c&m=====&8&m==");
+
+        updateCheck(Bukkit.getConsoleSender(), true);
     }
 
     @Override
@@ -86,11 +85,17 @@ public final class ExamplePlugin extends RosePlugin {
         return Collections.emptyList();
     }
 
-    private void loadListeners() {
+    private void loadManagers() {
+        Color.log("&aLoaded managers.");
+    }
 
+    private void loadListeners() {
+        this.getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        Color.log("&aLoaded listeners.");
     }
 
     public void updateCheck(CommandSender sender, boolean console) {
+        Color.log("&aChecking for updates!");
         try {
             String urlString = "https://updatecheck.refracdev.ml";
             URL url = new URL(urlString);

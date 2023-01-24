@@ -3,7 +3,7 @@ version: '@version@'
 main: me.refracdevelopment.example.ExamplePlugin
 author: RefracDevelopment
 api-version: "1.13"
-softdepend:
+depend:
   - PlaceholderAPI
 description: An Example plugin
 website: https://discord.refracdev.ml/
