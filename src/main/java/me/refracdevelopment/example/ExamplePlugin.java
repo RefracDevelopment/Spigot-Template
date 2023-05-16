@@ -11,7 +11,7 @@ import me.refracdevelopment.example.manager.CommandManager;
 import me.refracdevelopment.example.manager.ConfigurationManager;
 import me.refracdevelopment.example.manager.LocaleManager;
 import me.refracdevelopment.example.utilities.chat.Color;
-import me.refracdevelopment.example.utilities.config.Config;
+import me.refracdevelopment.example.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;

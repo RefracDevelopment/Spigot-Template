@@ -1,4 +1,4 @@
-package me.refracdevelopment.example.utilities.config;
+package me.refracdevelopment.example.config;
 
 import me.refracdevelopment.example.manager.ConfigurationManager;
 import me.refracdevelopment.example.utilities.chat.Color;
