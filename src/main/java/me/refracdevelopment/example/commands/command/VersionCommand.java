@@ -7,6 +7,7 @@ import dev.rosewood.rosegarden.command.framework.RoseCommandWrapper;
 import dev.rosewood.rosegarden.command.framework.annotation.RoseExecutable;
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
 import me.refracdevelopment.example.manager.LocaleManager;
+import me.refracdevelopment.example.utilities.Permissions;
 
 public class VersionCommand extends RoseCommand {
 
@@ -36,6 +37,6 @@ public class VersionCommand extends RoseCommand {
 
     @Override
     public String getRequiredPermission() {
-        return "exampleplugin.version";
+        return Permissions.VERSION_COMMAND;
     }
 }

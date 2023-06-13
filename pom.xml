@@ -68,8 +68,8 @@
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
         <repository>
-            <id>rosewood</id>
-            <url>https://repo.rosewooddev.io/repository/public/</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -87,8 +87,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>dev.rosewood</groupId>
-            <artifactId>rosegarden</artifactId>
+            <groupId>com.github.Refrac</groupId>
+            <artifactId>RoseGarden</artifactId>
             <version>1.2.3</version>
         </dependency>
     </dependencies>
