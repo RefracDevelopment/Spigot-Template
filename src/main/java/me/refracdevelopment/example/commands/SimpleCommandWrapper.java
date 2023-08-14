@@ -39,6 +39,6 @@ public class SimpleCommandWrapper extends RoseCommandWrapper {
 
     @Override
     public boolean includeReloadCommand() {
-        return true;
+        return false;
     }
 }
