@@ -50,6 +50,10 @@
                             <pattern>dev.dejvokep.boostedyaml</pattern>
                             <shadedPattern>me.refracdevelopment.example.libs</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <patter>me.kodysimpson.simpapi</patter>
+                            <shadedPattern>me.refracdevelopment.example.libs</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
