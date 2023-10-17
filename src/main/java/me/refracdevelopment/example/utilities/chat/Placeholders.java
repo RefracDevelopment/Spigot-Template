@@ -1,17 +1,18 @@
 package me.refracdevelopment.example.utilities.chat;
 
-import dev.rosewood.rosegarden.utils.StringPlaceholders;
 import me.refracdevelopment.example.ExamplePlugin;
-import me.refracdevelopment.example.manager.LocaleManager;
+import me.refracdevelopment.example.utilities.Manager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Placeholders {
+public class Placeholders extends Manager {
 
-    public static String setPlaceholders(CommandSender sender, String placeholder) {
-        final LocaleManager locale = ExamplePlugin.getInstance().getManager(LocaleManager.class);
+    public Placeholders(ExamplePlugin plugin) {
+        super(plugin);
+    }
 
-        placeholder = placeholder.replace("%prefix%", locale.getLocaleMessage("prefix"));
+    public String setPlaceholders(CommandSender sender, String placeholder) {
+        placeholder = placeholder.replace("%prefix%", plugin.getSettings().PREFIX);
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
@@ -25,26 +26,5 @@ public class Placeholders {
         placeholder = placeholder.replace("|", "\u239F");
 
         return placeholder;
-    }
-
-    public static StringPlaceholders setPlaceholders(CommandSender sender) {
-        StringPlaceholders.Builder placeholders = StringPlaceholders.builder();
-        final LocaleManager locale = ExamplePlugin.getInstance().getManager(LocaleManager.class);
-
-        placeholders.add("prefix", locale.getLocaleMessage("prefix"));
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-
-            placeholders.add("player", player.getName());
-            placeholders.add("displayname", player.getDisplayName());
-        }
-        placeholders.add("arrow", "\u00BB");
-        placeholders.add("arrow2", "\u27A5");
-        placeholders.add("arrow_2", "\u27A5");
-        placeholders.add("star", "\u2726");
-        placeholders.add("circle", "\u2219");
-        placeholders.add("|", "\u239F");
-
-        return placeholders.build();
     }
 }

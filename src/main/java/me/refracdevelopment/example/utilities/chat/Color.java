@@ -1,32 +1,48 @@
 package me.refracdevelopment.example.utilities.chat;
 
-import dev.rosewood.rosegarden.hook.PlaceholderAPIHook;
-import dev.rosewood.rosegarden.utils.HexUtils;
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.refracdevelopment.example.ExamplePlugin;
-import me.refracdevelopment.example.manager.LocaleManager;
+import me.refracdevelopment.example.utilities.Manager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Color {
+public class Color extends Manager {
 
-    public static String translate(CommandSender sender, String source) {
-        source = Placeholders.setPlaceholders(sender, source);
+    private final Placeholders placeholders;
+    private final HexUtils hexUtils;
+
+    public Color(ExamplePlugin plugin) {
+        super(plugin);
+        this.placeholders = new Placeholders(plugin);
+        this.hexUtils = new HexUtils();
+    }
+
+    public String translate(CommandSender sender, String source) {
+        source = placeholders.setPlaceholders(sender, source);
 
         if (sender instanceof Player) {
-            return PlaceholderAPIHook.applyPlaceholders((Player) sender, translate(source));
+            return PlaceholderAPI.setPlaceholders((Player) sender, translate(source));
         } else return translate(source);
     }
 
-    public static String translate(String source) {
-        return HexUtils.colorify(source);
+    public String translate(String source) {
+        return hexUtils.colorify(source);
     }
 
-    public static void log(String message) {
-        final LocaleManager locale = ExamplePlugin.getInstance().getManager(LocaleManager.class);
+    public void sendMessage(CommandSender sender, String message) {
+        if (message.contains("%empty%") || message.equalsIgnoreCase("%empty%") || message.isEmpty()) return;
 
-        String prefix = locale.getLocaleMessage("prefix");
+        sender.sendMessage(translate(sender, plugin.getConfigFile().getString("messages." + message).replace("%cmd%", plugin.getCommands().EXAMPLE_COMMAND_ALIASES.get(0))));
+    }
 
-        locale.sendCustomMessage(Bukkit.getConsoleSender(), prefix +  message);
+    public void sendCustomMessage(CommandSender sender, String message) {
+        if (message.contains("%empty%") || message.equalsIgnoreCase("%empty%") || message.isEmpty()) return;
+
+        sender.sendMessage(translate(sender, message));
+    }
+
+    public void log(String message) {
+        sendCustomMessage(Bukkit.getConsoleSender(), plugin.getSettings().PREFIX + message);
     }
 }

@@ -1,0 +1,18 @@
+# This is used for automatic file updating purposes
+config-version: 1
+
+commands:
+  example:
+    enabled: true
+    aliases:
+      - "example"
+  reload:
+    enabled: true
+    permission: "example.command.reload"
+    aliases:
+      - "reload"
+  version:
+    enabled: true
+    permission: "example.command.version"
+    aliases:
+      - "version"

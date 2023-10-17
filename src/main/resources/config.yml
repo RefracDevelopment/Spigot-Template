@@ -1,0 +1,20 @@
+#  ___________                             __
+#    \_   _____/__  _______    _____ ______ |  |   ____
+#    |    __)_\  \/  /__  \  /     \\____ \|  | _/ __ \
+#    |        \\    / / __ \_  | |  \  |_\ \  |__  ___/_
+#    /_______  /__/\_ \____  /__|_|  /   ___/____/\___  /
+#    \/      \/    \/      \/|__|             \/
+
+# This is used for automatic file updating purposes
+config-version: 1
+
+prefix: '<g:#8A2387:#E94057:#F27121>ExamplePlugin &8| &f'
+
+messages:
+  # Generic Command Messages
+  no-permission: '&cYou don''t have permission for that!'
+  no-console: '&cOnly players may execute this command.'
+  example-message: 'This is a test message'
+  # Base Command Message
+  base-command-color: '&e'
+  base-command-help: '&eUse &b/%cmd% help &efor command information.'
