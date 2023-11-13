@@ -1,6 +1,8 @@
 # Bukkit-Boilerplate
 Boilerplate code for all of my plugins
 
+Feel free to use this as a template for your plugins.
+
 ### Libraries Used
 [SimpAPI](https://github.com/Cortex-MC/SimpAPI/) By [Cortex-MC](https://github.com/Cortex-MC/)
 
