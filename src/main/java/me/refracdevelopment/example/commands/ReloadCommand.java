@@ -1,48 +1,44 @@
 package me.refracdevelopment.example.commands;
 
-import me.kodysimpson.simpapi.command.SubCommand;
 import me.refracdevelopment.example.ExamplePlugin;
+import me.refracdevelopment.example.utilities.chat.Color;
+import me.refracdevelopment.example.utilities.command.SubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ReloadCommand extends SubCommand {
 
-    private final ExamplePlugin plugin;
-
-    public ReloadCommand(ExamplePlugin plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public String getName() {
-        return plugin.getCommands().RELOAD_COMMAND_ALIASES.get(0);
+        return "reload";
     }
 
     @Override
     public List<String> getAliases() {
-        return plugin.getCommands().RELOAD_COMMAND_ALIASES;
+        return Collections.emptyList();
     }
 
     @Override
     public String getDescription() {
-        return "Allows you to reload the config files.";
+        return "Allows you to reload the configuration files.";
     }
 
     @Override
     public String getSyntax() {
-        return plugin.getCommands().EXAMPLE_COMMAND_ALIASES.get(0) + " " + plugin.getCommands().RELOAD_COMMAND_ALIASES.get(0);
+        return "";
     }
 
     @Override
     public void perform(CommandSender commandSender, String[] strings) {
-        if (!commandSender.hasPermission(plugin.getCommands().RELOAD_COMMAND_PERMISSION)) {
-            plugin.getColor().sendMessage(commandSender, "no-permission");
+        if (!commandSender.hasPermission("exampleplugin.command.reload")) {
+            Color.sendMessage(commandSender, "no-permission");
             return;
         }
 
-        plugin.reloadFiles();
+        ExamplePlugin.getInstance().reloadFiles();
     }
 
     @Override

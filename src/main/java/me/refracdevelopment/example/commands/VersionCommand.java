@@ -1,28 +1,24 @@
 package me.refracdevelopment.example.commands;
 
-import me.kodysimpson.simpapi.command.SubCommand;
 import me.refracdevelopment.example.ExamplePlugin;
+import me.refracdevelopment.example.utilities.chat.Color;
+import me.refracdevelopment.example.utilities.command.SubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Collections;
 import java.util.List;
 
 public class VersionCommand extends SubCommand {
 
-    private final ExamplePlugin plugin;
-
-    public VersionCommand(ExamplePlugin plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public String getName() {
-        return plugin.getCommands().VERSION_COMMAND_ALIASES.get(0);
+        return "version";
     }
 
     @Override
     public List<String> getAliases() {
-        return plugin.getCommands().VERSION_COMMAND_ALIASES;
+        return Collections.emptyList();
     }
 
     @Override
@@ -32,20 +28,20 @@ public class VersionCommand extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/" + plugin.getCommands().EXAMPLE_COMMAND_ALIASES.get(0) + " " + plugin.getCommands().VERSION_COMMAND_ALIASES.get(0);
+        return "";
     }
 
     @Override
     public void perform(CommandSender commandSender, String[] strings) {
-        if (!commandSender.hasPermission(plugin.getCommands().VERSION_COMMAND_PERMISSION)) {
-            plugin.getColor().sendMessage(commandSender, "no-permission");
+        if (!commandSender.hasPermission("exampleplugin.command.version")) {
+            Color.sendMessage(commandSender, "no-permission");
             return;
         }
 
-        String baseColor = plugin.getConfigFile().getString("messages.base-command-color");
-        plugin.getColor().sendCustomMessage(commandSender, baseColor + "Running <g:#8A2387:#E94057:#F27121>ExamplePlugin" + baseColor + " v" + plugin.getDescription().getVersion());
-        plugin.getColor().sendCustomMessage(commandSender, baseColor + "Plugin created by: <g:#41E0F0:#FF8DCE>" + plugin.getDescription().getAuthors().get(0));
-        plugin.getColor().sendMessage(commandSender, "messages.base-command-help");
+        String baseColor = ExamplePlugin.getInstance().getConfigFile().getString("messages.base-command-color");
+        Color.sendCustomMessage(commandSender, baseColor + "Running <g:#8A2387:#E94057:#F27121>ExamplePlugin" + baseColor + " v" + ExamplePlugin.getInstance().getDescription().getVersion());
+        Color.sendCustomMessage(commandSender, baseColor + "Plugin created by: <g:#41E0F0:#FF8DCE>" + ExamplePlugin.getInstance().getDescription().getAuthors().get(0));
+        Color.sendMessage(commandSender, "messages.base-command-help");
     }
 
     @Override

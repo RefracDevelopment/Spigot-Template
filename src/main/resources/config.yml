@@ -6,15 +6,26 @@
 #    \/      \/    \/      \/|__|             \/
 
 # This is used for automatic file updating purposes
-config-version: 1
+config-version: '1'
 
-prefix: '<g:#8A2387:#E94057:#F27121>ExamplePlugin &8| &f'
+# The locale to use in the /locale folder
+locale: en_US
 
-messages:
-  # Generic Command Messages
-  no-permission: '&cYou don''t have permission for that!'
-  no-console: '&cOnly players may execute this command.'
-  example-message: 'This is a test message'
-  # Base Command Message
-  base-command-color: '&e'
-  base-command-help: '&eUse &b/%cmd% help &efor command information.'
+# Choose your data saving type:
+# MYSQL/MARIADB - Database saving
+# SQLITE - Local .db database file saving
+# Default: SQLITE
+data-type: SQLITE
+
+# Either MySQL or MariaDB will work here.
+mysql:
+  # Default: 127.0.0.1
+  host: 127.0.0.1
+  # Default: 3306
+  port: '3306'
+  # Default: SimpleGems
+  database: SimpleGems
+  # Default: root
+  username: root
+  # Default:
+  password: ''
