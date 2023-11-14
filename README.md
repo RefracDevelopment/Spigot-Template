@@ -4,4 +4,4 @@ Boilerplate code for all of my plugins
 Feel free to use this as a template for your plugins.
 
 ### Libraries Used
-Libraries used within the project can be viewed in the [POM](pom.xml) file.
+Libraries used within the project can be viewed in the [POM](pom.xml) file or the [Dependencies Page](https://github.com/RefracDevelopment/Bukkit-Boilerplate/network/dependencies).
