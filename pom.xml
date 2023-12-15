@@ -55,7 +55,7 @@
                             <shadedPattern>me.yourname.example.libs.actions</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>org.bstats.bukkit</pattern>
+                            <pattern>org.bstats</pattern>
                             <shadedPattern>me.yourname.example.libs.bstats</shadedPattern>
                         </relocation>
                         <relocation>
