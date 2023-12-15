@@ -1,8 +1,8 @@
 name: ExamplePlugin
 version: '${project.version}'
-main: me.refracdevelopment.example.ExamplePlugin
+main: me.yourname.example.ExamplePlugin
 authors:
-  - Refrac
+  - YourName
 api-version: "1.13"
 softdepend:
   - NBTAPI
@@ -10,5 +10,4 @@ softdepend:
   - Skulls
   - HeadDatabase
 description: An Example plugin
-website: https://discord.gg/EFeSKPg739
 folia-supported: true

@@ -23,8 +23,8 @@ mysql:
   host: 127.0.0.1
   # Default: 3306
   port: '3306'
-  # Default: SimpleGems
-  database: SimpleGems
+  # Default: ExamplePlugin
+  database: ExamplePlugin
   # Default: root
   username: root
   # Default:
