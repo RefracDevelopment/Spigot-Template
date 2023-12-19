@@ -13,7 +13,7 @@ public class DownloadUtil {
         Library lib = Library.builder()
                 .groupId("org{}mariadb{}jdbc") // "{}" is replaced with ".", useful to avoid unwanted changes made by maven-shade-plugin
                 .artifactId("mariadb-java-client")
-                .version("3.3.1")
+                .version("3.3.2")
                 .build();
         Library lib2 = Library.builder()
                 .groupId("org{}slf4j") // "{}" is replaced with ".", useful to avoid unwanted changes made by maven-shade-plugin
