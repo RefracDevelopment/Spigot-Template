@@ -136,7 +136,7 @@ public class MySQLManager {
         }).start();
     }
 
-    public void updatePlayerGems(UUID uuid, long points) {
+    public void updatePlayerPoints(UUID uuid, long points) {
         execute("UPDATE ExamplePlugin SET points=? WHERE uuid=?", points, uuid.toString());
     }
 

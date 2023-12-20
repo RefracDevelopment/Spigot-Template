@@ -38,7 +38,7 @@ public class VersionCommand extends SubCommand {
         }
 
         String baseColor = ExamplePlugin.getInstance().getLocaleFile().getString("base-command-color");
-        Color.sendCustomMessage(commandSender, baseColor + "Running <g:#8A2387:#E94057:#F27121>ExamplePlugin" + baseColor + " v" + ExamplePlugin.getInstance().getDescription().getVersion());
+        Color.sendCustomMessage(commandSender, baseColor + "Running <g:#8A2387:#E94057:#F27121>" + ExamplePlugin.getInstance().getDescription().getName() + baseColor + " v" + ExamplePlugin.getInstance().getDescription().getVersion());
         Color.sendCustomMessage(commandSender, baseColor + "Plugin created by: <g:#41E0F0:#FF8DCE>" + ExamplePlugin.getInstance().getDescription().getAuthors().get(0));
         Color.sendMessage(commandSender, "base-command-help");
     }

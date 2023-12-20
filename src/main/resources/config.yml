@@ -5,6 +5,8 @@
 #    /_______  /__/\_ \____  /__|_|  /   ___/____/\___  /
 #    \/      \/    \/      \/|__|             \/
 
+# This uses Graffity ASCII text from: https://texteditor.com/multiline-text-art/
+
 # This is used for automatic file updating purposes
 config-version: '1'
 

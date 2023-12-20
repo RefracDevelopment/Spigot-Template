@@ -86,24 +86,24 @@ public final class ExamplePlugin extends JavaPlugin {
         }
 
         // Make sure the server has PlaceholderAPI
-        if (pluginManager.getPlugin("PlaceholderAPI") == null) {
+        if (!pluginManager.isPluginEnabled("PlaceholderAPI")) {
             Color.log("&cPlease install PlaceholderAPI onto your server to use this plugin.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
         // Make sure the server has NBTAPI
-        if (pluginManager.getPlugin("NBTAPI") == null) {
+        if (!pluginManager.isPluginEnabled("NBTAPI")) {
             Color.log("&cPlease install NBTAPI onto your server to use this plugin.");
             pluginManager.disablePlugin(this);
             return;
         }
 
-        if (pluginManager.getPlugin("Skulls") != null) {
+        if (pluginManager.isPluginEnabled("Skulls")) {
             Color.log("&aSkulls Detected!");
         }
 
-        if (pluginManager.getPlugin("HeadDatabase") != null) {
+        if (pluginManager.isPluginEnabled("HeadDatabase")) {
             Color.log("&aHeadDatabase Detected!");
         }
 
@@ -135,6 +135,10 @@ public final class ExamplePlugin extends JavaPlugin {
         // Cache
         settings = new Config();
         commands = new Commands();
+
+        Color.log("&c==========================================");
+        Color.log("&aAll files have been loaded correctly!");
+        Color.log("&c==========================================");
     }
 
     public void reloadFiles() {
@@ -146,6 +150,10 @@ public final class ExamplePlugin extends JavaPlugin {
         // Cache
         getSettings().loadConfig();
         getCommands().loadConfig();
+
+        Color.log("&c==========================================");
+        Color.log("&aAll files have been reloaded correctly!");
+        Color.log("&c==========================================");
     }
 
     private void loadManagers() {
@@ -207,8 +215,8 @@ public final class ExamplePlugin extends JavaPlugin {
         Color.log("&aLoaded listeners.");
     }
 
+    // This uses Cloudflare Workers with JavaScript
     public void updateCheck(CommandSender sender, boolean console) {
-        Color.log("&aChecking for updates!");
         try {
             // Change to your update-checker url
             String urlString = "https://refracdev-updatecheck.refracdev.workers.dev/";

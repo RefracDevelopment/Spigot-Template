@@ -65,10 +65,10 @@ public class ProfileData {
     public void save() {
         switch (ExamplePlugin.getInstance().getDataType()) {
             case MYSQL:
-                ExamplePlugin.getInstance().getMySQLManager().updatePlayerGems(getUuid(), getPoints().getAmount());
+                ExamplePlugin.getInstance().getMySQLManager().updatePlayerPoints(getUuid(), getPoints().getAmount());
                 break;
             default:
-                ExamplePlugin.getInstance().getSqLiteManager().updatePlayerGems(getUuid(), getPoints().getAmount());
+                ExamplePlugin.getInstance().getSqLiteManager().updatePlayerPoints(getUuid(), getPoints().getAmount());
                 break;
         }
     }
