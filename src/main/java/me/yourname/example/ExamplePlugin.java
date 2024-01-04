@@ -81,14 +81,14 @@ public final class ExamplePlugin extends JavaPlugin {
         // Check if the server is on 1.7
         if (ReflectionUtils.MINOR_NUMBER <= 7) {
             Color.log("&c" + getDescription().getName() + " 1.7 is in legacy mode, please update to 1.8+");
-            getServer().getPluginManager().disablePlugin(this);
+            pluginManager.disablePlugin(this);
             return;
         }
 
         // Make sure the server has PlaceholderAPI
         if (!pluginManager.isPluginEnabled("PlaceholderAPI")) {
             Color.log("&cPlease install PlaceholderAPI onto your server to use this plugin.");
-            getServer().getPluginManager().disablePlugin(this);
+            pluginManager.disablePlugin(this);
             return;
         }
 
@@ -211,7 +211,7 @@ public final class ExamplePlugin extends JavaPlugin {
     }
 
     private void loadListeners() {
-        this.getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        getServer().getPluginManager().registerEvents(new JoinListener(), this);
         Color.log("&aLoaded listeners.");
     }
 
