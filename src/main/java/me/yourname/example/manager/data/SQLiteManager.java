@@ -135,10 +135,10 @@ public class SQLiteManager {
     }
 
     public void delete() {
-        execute("DELETE * FROM ExamplePlugin");
+        execute("DELETE FROM ExamplePlugin");
     }
 
     public void deletePlayer(UUID uuid) {
-        execute("DELETE * FROM ExamplePlugin WHERE uuid=?", uuid.toString());
+        execute("DELETE FROM ExamplePlugin WHERE uuid=?", uuid.toString());
     }
 }
