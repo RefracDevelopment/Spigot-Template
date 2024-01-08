@@ -1,6 +1,4 @@
 # Bukkit-Boilerplate
-Boilerplate code for all of my plugins
-
 Feel free to use this as a template for your plugins.
 
 This template supports 1.8 - 1.20 and multiple platforms such as:
