@@ -32,30 +32,30 @@ public class ProfileData {
                     try {
                         if (resultSet.next()) {
                             getPoints().setAmount(resultSet.getLong("points"));
-                            ExamplePlugin.getInstance().getMySQLManager().updatePlayerName(getUuid(), getName());
+                            ExamplePlugin.getInstance().getMySQLManager().updatePlayerName(player.getUniqueId().toString(), player.getName());
                         } else {
                             ExamplePlugin.getInstance().getMySQLManager().execute("INSERT INTO ExamplePlugin (uuid, name, points) VALUES (?,?,?)",
-                                    getUuid().toString(), getName(), 0);
+                                    player.getUniqueId().toString(), player.getName(), 0L);
                         }
                     } catch (SQLException exception) {
                         Color.log("MySQL Error: " + exception.getMessage());
                     }
-                }, getUuid().toString());
+                }, player.getUniqueId().toString());
                 break;
             default:
                 ExamplePlugin.getInstance().getSqLiteManager().select("SELECT * FROM ExamplePlugin WHERE uuid=?", resultSet -> {
                     try {
                         if (resultSet.next()) {
                             getPoints().setAmount(resultSet.getLong("points"));
-                            ExamplePlugin.getInstance().getSqLiteManager().updatePlayerName(player.getUniqueId(), player.getName());
+                            ExamplePlugin.getInstance().getSqLiteManager().updatePlayerName(player.getUniqueId().toString(), player.getName());
                         } else {
                             ExamplePlugin.getInstance().getSqLiteManager().execute("INSERT INTO ExamplePlugin (uuid, name, points) VALUES (?,?,?)",
-                                    player.getUniqueId().toString(), player.getName(), 0);
+                                    player.getUniqueId().toString(), player.getName(), 0L);
                         }
                     } catch (SQLException exception) {
                         Color.log("SQLite Error: " + exception.getMessage());
                     }
-                }, getUuid().toString());
+                }, player.getUniqueId().toString());
                 break;
         }
     }
@@ -64,10 +64,10 @@ public class ProfileData {
     public void save(Player player) {
         switch (ExamplePlugin.getInstance().getDataType()) {
             case MYSQL:
-                ExamplePlugin.getInstance().getMySQLManager().updatePlayerPoints(player.getUniqueId(), getPoints().getAmount());
+                ExamplePlugin.getInstance().getMySQLManager().updatePlayerPoints(player.getUniqueId().toString(), getPoints().getAmount());
                 break;
             default:
-                ExamplePlugin.getInstance().getSqLiteManager().updatePlayerPoints(player.getUniqueId(), getPoints().getAmount());
+                ExamplePlugin.getInstance().getSqLiteManager().updatePlayerPoints(player.getUniqueId().toString(), getPoints().getAmount());
                 break;
         }
     }

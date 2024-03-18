@@ -136,19 +136,19 @@ public class SQLiteManager {
         }).start();
     }
 
-    public void updatePlayerPoints(UUID uuid, long points) {
-        execute("UPDATE ExamplePlugin SET points=? WHERE uuid=?", points, uuid.toString());
+    public void updatePlayerPoints(String uuid, long points) {
+        execute("UPDATE ExamplePlugin SET points=? WHERE uuid=?", points, uuid);
     }
 
-    public void updatePlayerName(UUID uuid, String name) {
-        execute("UPDATE ExamplePlugin SET name=? WHERE uuid=?", name, uuid.toString());
+    public void updatePlayerName(String uuid, String name) {
+        execute("UPDATE ExamplePlugin SET name=? WHERE uuid=?", name, uuid);
     }
 
     public void delete() {
         execute("DELETE FROM ExamplePlugin");
     }
 
-    public void deletePlayer(UUID uuid) {
-        execute("DELETE FROM ExamplePlugin WHERE uuid=?", uuid.toString());
+    public void deletePlayer(String uuid) {
+        execute("DELETE FROM ExamplePlugin WHERE uuid=?", uuid);
     }
 }
