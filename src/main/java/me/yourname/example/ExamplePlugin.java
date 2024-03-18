@@ -92,21 +92,6 @@ public final class ExamplePlugin extends JavaPlugin {
             return;
         }
 
-        // Make sure the server has NBTAPI
-        if (!pluginManager.isPluginEnabled("NBTAPI")) {
-            Color.log("&cPlease install NBTAPI onto your server to use this plugin.");
-            pluginManager.disablePlugin(this);
-            return;
-        }
-
-        if (pluginManager.isPluginEnabled("Skulls")) {
-            Color.log("&aSkulls Detected!");
-        }
-
-        if (pluginManager.isPluginEnabled("HeadDatabase")) {
-            Color.log("&aHeadDatabase Detected!");
-        }
-
         loadManagers();
         loadCommands();
         loadListeners();
@@ -145,12 +130,10 @@ public final class ExamplePlugin extends JavaPlugin {
             case "MYSQL":
                 dataType = DataType.MYSQL;
                 mySQLManager = new MySQLManager();
-                Color.log("&aEnabled MySQL support!");
                 break;
             default:
                 dataType = DataType.SQLITE;
                 sqLiteManager = new SQLiteManager(getDataFolder().getAbsolutePath() + File.separator + "example.db");
-                Color.log("&aEnabled SQLite support!");
                 break;
         }
 
