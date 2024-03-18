@@ -5,7 +5,6 @@ import lombok.Setter;
 import me.yourname.example.ExamplePlugin;
 import me.yourname.example.player.stats.Stat;
 import me.yourname.example.utilities.chat.Color;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;

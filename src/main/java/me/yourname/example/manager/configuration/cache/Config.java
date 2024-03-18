@@ -1,7 +1,6 @@
 package me.yourname.example.manager.configuration.cache;
 
 import me.yourname.example.ExamplePlugin;
-import me.yourname.example.utilities.chat.Color;
 
 public class Config {
 

@@ -1,8 +1,6 @@
 package me.yourname.example;
 
 import com.cryptomorin.xseries.ReflectionUtils;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.tcoded.folialib.FoliaLib;
 import lombok.Getter;
 import me.yourname.example.commands.HelpCommand;
@@ -27,11 +25,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
