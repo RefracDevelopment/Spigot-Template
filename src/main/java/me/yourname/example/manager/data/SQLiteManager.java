@@ -1,9 +1,9 @@
 package me.yourname.example.manager.data;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import me.yourname.example.utilities.Tasks;
 import me.yourname.example.utilities.chat.Color;
+import org.bukkit.Bukkit;
+import org.sqlite.SQLiteDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,23 +14,33 @@ public class SQLiteManager {
 
     private SQLiteDataSource dataSource;
 
+    public SQLiteManager(String path) {
+        Color.log("&eEnabling SQLite support!");
+        Exception ex = connect(path);
+        if (ex != null) {
+            Color.log("&cThere was an error connecting to your database. Here's the suspect: &e" + ex.getLocalizedMessage());
+            ex.printStackTrace();
+            Bukkit.shutdown();
+        } else {
+            Color.log("&aManaged to successfully connect to: &e" + path + "&a!");
+        }
+        createT();
+    }
+
     public void createT() {
         Tasks.runAsync(this::createTables);
     }
 
-    public boolean connect(String path) {
+    private Exception connect(String path) {
         try {
-            Color.log("&aConnecting to SQLite...");
             Class.forName("org.sqlite.JDBC");
             dataSource = new SQLiteDataSource();
             dataSource.setUrl("jdbc:sqlite:" + path);
-            Color.log("&aConnected to SQLite!");
-            return true;
         } catch (Exception exception) {
-            Color.log("&cCould not connect to SQLite! Error: " + exception.getMessage());
-            exception.printStackTrace();
-            return false;
+            dataSource = null;
+            return exception;
         }
+        return null;
     }
 
     public void shutdown() {

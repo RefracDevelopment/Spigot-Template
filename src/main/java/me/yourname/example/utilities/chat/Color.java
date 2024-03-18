@@ -18,7 +18,8 @@ public class Color {
 
         if (sender instanceof Player && Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             return PlaceholderAPI.setPlaceholders((Player) sender, translate(source));
-        } else return translate(source);
+        } else
+            return translate(source);
     }
 
     public String translate(String message) {
@@ -38,7 +39,8 @@ public class Color {
     }
 
     public void sendCustomMessage(CommandSender sender, String message) {
-        if (message.equalsIgnoreCase("%empty%") || message.contains("%empty%") || message.isEmpty()) return;
+        if (message.equalsIgnoreCase("%empty%") || message.contains("%empty%") || message.isEmpty())
+            return;
 
         HexUtils.sendMessage(sender, Placeholders.setPlaceholders(sender, "%prefix%" + message));
     }

@@ -37,12 +37,27 @@ public class ReloadCommand extends SubCommand {
             return;
         }
 
-        ExamplePlugin.getInstance().reloadFiles();
+        reloadFiles();
         Color.sendMessage(commandSender, "command-reload-success");
     }
 
     @Override
     public List<String> getSubcommandArguments(Player player, String[] strings) {
         return null;
+    }
+
+    private void reloadFiles() {
+        // Files
+        ExamplePlugin.getInstance().getConfigFile().reload();
+        ExamplePlugin.getInstance().getCommandsFile().reload();
+        ExamplePlugin.getInstance().getLocaleFile().reload();
+
+        // Cache
+        ExamplePlugin.getInstance().getSettings().loadConfig();
+        ExamplePlugin.getInstance().getCommands().loadConfig();
+
+        Color.log("&c==========================================");
+        Color.log("&aAll files have been reloaded correctly!");
+        Color.log("&c==========================================");
     }
 }

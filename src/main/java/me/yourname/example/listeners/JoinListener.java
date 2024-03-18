@@ -7,16 +7,13 @@ import me.yourname.example.utilities.chat.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 public class JoinListener implements Listener {
 
     @EventHandler
-    public void onPreLogin(AsyncPlayerPreLoginEvent event) {
-        ExamplePlugin.getInstance().getProfileManager().handleProfileCreation(event.getUniqueId(), event.getName());
+    public void onPreLogin(PlayerLoginEvent event) {
+        ExamplePlugin.getInstance().getProfileManager().handleProfileCreation(event.getPlayer().getUniqueId(), event.getPlayer().getName());
     }
 
     @EventHandler
@@ -24,7 +21,7 @@ public class JoinListener implements Listener {
         Player player = event.getPlayer();
         Profile profile = ExamplePlugin.getInstance().getProfileManager().getProfile(player.getUniqueId());
 
-        Tasks.runAsync(() -> profile.getData().load());
+        Tasks.runAsync(() -> profile.getData().load(player));
 
         if (profile == null || profile.getData() == null) {
             player.kickPlayer(Color.translate(ExamplePlugin.getInstance().getLocaleFile().getString("kick-messages-error")));
@@ -38,7 +35,8 @@ public class JoinListener implements Listener {
     public void onReload(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
 
-        if (!event.getMessage().equalsIgnoreCase("/reload confirm")) return;
+        if (!event.getMessage().equalsIgnoreCase("/reload confirm"))
+            return;
 
         Color.sendCustomMessage(player, "&cUse of /reload is not recommended as it can cause issues often cases. Please restart your server when possible.");
     }
@@ -47,10 +45,13 @@ public class JoinListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         Profile profile = ExamplePlugin.getInstance().getProfileManager().getProfile(player.getUniqueId());
-        if (profile == null) return;
-        if (profile.getData() == null) return;
 
-        Tasks.runAsync(() -> profile.getData().save());
+        if (profile == null)
+            return;
+        if (profile.getData() == null)
+            return;
+
+        Tasks.runAsync(() -> profile.getData().save(player));
         ExamplePlugin.getInstance().getProfileManager().getProfiles().remove(player.getUniqueId());
     }
 }

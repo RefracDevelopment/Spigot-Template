@@ -117,8 +117,6 @@ public final class ExamplePlugin extends JavaPlugin {
         Color.log(" &f[*] &6Name&f: &b" + getDescription().getName());
         Color.log(" &f[*] &6Author&f: &b" + getDescription().getAuthors().get(0));
         Color.log("&8&m==&c&m=====&f&m======================&c&m=====&8&m==");
-
-        updateCheck(getServer().getConsoleSender(), true);
     }
 
     @Override
@@ -141,36 +139,17 @@ public final class ExamplePlugin extends JavaPlugin {
         Color.log("&c==========================================");
     }
 
-    public void reloadFiles() {
-        // Files
-        getConfigFile().reload();
-        getCommandsFile().reload();
-        getLocaleFile().reload();
-
-        // Cache
-        getSettings().loadConfig();
-        getCommands().loadConfig();
-
-        Color.log("&c==========================================");
-        Color.log("&aAll files have been reloaded correctly!");
-        Color.log("&c==========================================");
-    }
-
     private void loadManagers() {
         switch (getSettings().DATA_TYPE.toUpperCase()) {
             case "MARIADB":
             case "MYSQL":
                 dataType = DataType.MYSQL;
                 mySQLManager = new MySQLManager();
-                getMySQLManager().connect();
-                getMySQLManager().createT();
                 Color.log("&aEnabled MySQL support!");
                 break;
             default:
                 dataType = DataType.SQLITE;
-                sqLiteManager = new SQLiteManager();
-                getSqLiteManager().connect(getDataFolder().getAbsolutePath() + File.separator + "example.db");
-                getSqLiteManager().createT();
+                sqLiteManager = new SQLiteManager(getDataFolder().getAbsolutePath() + File.separator + "example.db");
                 Color.log("&aEnabled SQLite support!");
                 break;
         }
@@ -213,55 +192,5 @@ public final class ExamplePlugin extends JavaPlugin {
     private void loadListeners() {
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         Color.log("&aLoaded listeners.");
-    }
-
-    // This uses Cloudflare Workers with JavaScript
-    public void updateCheck(CommandSender sender, boolean console) {
-        try {
-            // Change to your update-checker url
-            String urlString = "https://refracdev-updatecheck.refracdev.workers.dev/";
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String input;
-            StringBuffer response = new StringBuffer();
-            while ((input = reader.readLine()) != null) {
-                response.append(input);
-            }
-            reader.close();
-            JsonObject object = new JsonParser().parse(response.toString()).getAsJsonObject();
-
-            if (object.has("plugins")) {
-                JsonObject plugins = object.get("plugins").getAsJsonObject();
-                JsonObject info = plugins.get(getDescription().getName()).getAsJsonObject();
-                String version = info.get("version").getAsString();
-                if (version.equals(getDescription().getVersion())) {
-                    if (console) {
-                        Color.sendCustomMessage(sender, "&a" + getDescription().getName() + " is on the latest version.");
-                    }
-                } else {
-                    Color.sendCustomMessage(sender, "");
-                    Color.sendCustomMessage(sender, "");
-                    Color.sendCustomMessage(sender, "&cYour " + getDescription().getName() + " version is out of date!");
-                    Color.sendCustomMessage(sender, "&cWe recommend updating ASAP!");
-                    Color.sendCustomMessage(sender, "");
-                    Color.sendCustomMessage(sender, "&cYour Version: &e" + getDescription().getVersion());
-                    Color.sendCustomMessage(sender, "&aNewest Version: &e" + version);
-                    Color.sendCustomMessage(sender, "");
-                    Color.sendCustomMessage(sender, "");
-                    return;
-                }
-                return;
-            } else {
-                Color.sendCustomMessage(sender, "&cWrong response from update API, contact plugin developer!");
-                return;
-            }
-        } catch (
-                Exception ex) {
-            Color.sendCustomMessage(sender, "&cFailed to get updater check. (" + ex.getMessage() + ")");
-            return;
-        }
     }
 }

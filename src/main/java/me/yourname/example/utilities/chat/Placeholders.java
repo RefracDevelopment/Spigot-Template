@@ -10,18 +10,20 @@ public class Placeholders {
 
     public String setPlaceholders(CommandSender sender, String placeholder) {
         placeholder = placeholder.replace("%prefix%", ExamplePlugin.getInstance().getLocaleFile().getString("prefix"));
+
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
             placeholder = placeholder.replace("%player%", player.getName());
             placeholder = placeholder.replace("%displayname%", player.getDisplayName());
         }
-        placeholder = placeholder.replace("%arrow%", "\u00BB");
-        placeholder = placeholder.replace("%arrowright%", "\u00BB");
-        placeholder = placeholder.replace("%arrowleft%", "\u00AB");
-        placeholder = placeholder.replace("%star%", "\u2726");
-        placeholder = placeholder.replace("%circle%", "\u2219");
-        placeholder = placeholder.replace("|", "\u239F");
+
+        placeholder = placeholder.replace("%arrow%", "»");
+        placeholder = placeholder.replace("%arrowright%", "»");
+        placeholder = placeholder.replace("%arrowleft%", "«");
+        placeholder = placeholder.replace("%star%", "✦");
+        placeholder = placeholder.replace("%circle%", "∙");
+        placeholder = placeholder.replace("|", "⎟");
 
         return placeholder;
     }
@@ -36,12 +38,12 @@ public class Placeholders {
             placeholders.add("player", player.getName());
             placeholders.add("displayname", player.getDisplayName());
         }
-        placeholders.add("arrow", "\u00BB");
-        placeholders.add("arrowright", "\u00BB");
-        placeholders.add("arrowleft", "\u00AB");
-        placeholders.add("star", "\u2726");
-        placeholders.add("circle", "\u2219");
-        placeholders.add("|", "\u239F");
+        placeholders.add("arrow", "»");
+        placeholders.add("arrowright", "»");
+        placeholders.add("arrowleft", "«");
+        placeholders.add("star", "✦");
+        placeholders.add("circle", "∙");
+        placeholders.add("|", "⎟");
 
         return placeholders.build();
     }

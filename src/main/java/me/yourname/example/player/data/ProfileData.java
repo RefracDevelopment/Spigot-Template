@@ -26,7 +26,7 @@ public class ProfileData {
     }
 
     // Check if the player exists already if not add them to the database then load and cache their data
-    public void load() {
+    public void load(Player player) {
         switch (ExamplePlugin.getInstance().getDataType()) {
             case MYSQL:
                 ExamplePlugin.getInstance().getMySQLManager().select("SELECT * FROM ExamplePlugin WHERE uuid=?", resultSet -> {
@@ -48,10 +48,10 @@ public class ProfileData {
                     try {
                         if (resultSet.next()) {
                             getPoints().setAmount(resultSet.getLong("points"));
-                            ExamplePlugin.getInstance().getSqLiteManager().updatePlayerName(getUuid(), getName());
+                            ExamplePlugin.getInstance().getSqLiteManager().updatePlayerName(player.getUniqueId(), player.getName());
                         } else {
                             ExamplePlugin.getInstance().getSqLiteManager().execute("INSERT INTO ExamplePlugin (uuid, name, points) VALUES (?,?,?)",
-                                    getUuid().toString(), getName(), 0);
+                                    player.getUniqueId().toString(), player.getName(), 0);
                         }
                     } catch (SQLException exception) {
                         Color.log("SQLite Error: " + exception.getMessage());
@@ -62,19 +62,14 @@ public class ProfileData {
     }
 
     // Save the player to the database
-    public void save() {
+    public void save(Player player) {
         switch (ExamplePlugin.getInstance().getDataType()) {
             case MYSQL:
-                ExamplePlugin.getInstance().getMySQLManager().updatePlayerPoints(getUuid(), getPoints().getAmount());
+                ExamplePlugin.getInstance().getMySQLManager().updatePlayerPoints(player.getUniqueId(), getPoints().getAmount());
                 break;
             default:
-                ExamplePlugin.getInstance().getSqLiteManager().updatePlayerPoints(getUuid(), getPoints().getAmount());
+                ExamplePlugin.getInstance().getSqLiteManager().updatePlayerPoints(player.getUniqueId(), getPoints().getAmount());
                 break;
         }
     }
-
-    public Player getPlayer() {
-        return Bukkit.getPlayer(uuid);
-    }
-
 }

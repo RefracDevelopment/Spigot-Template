@@ -9,9 +9,5 @@ public class Config {
 
     public void loadConfig() {
         DATA_TYPE = ExamplePlugin.getInstance().getConfigFile().getString("data-type");
-
-        Color.log("&c==========================================");
-        Color.log("&aAll files have been loaded correctly!");
-        Color.log("&c==========================================");
     }
 }
