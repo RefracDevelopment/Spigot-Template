@@ -32,12 +32,14 @@ public class Placeholders {
         StringPlaceholders.Builder placeholders = StringPlaceholders.builder();
 
         placeholders.add("prefix", ExamplePlugin.getInstance().getLocaleFile().getString("prefix"));
+
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
             placeholders.add("player", player.getName());
             placeholders.add("displayname", player.getDisplayName());
         }
+
         placeholders.add("arrow", "»");
         placeholders.add("arrowright", "»");
         placeholders.add("arrowleft", "«");

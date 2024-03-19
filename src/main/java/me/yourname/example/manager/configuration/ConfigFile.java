@@ -22,7 +22,8 @@ public class ConfigFile {
     public ConfigFile(String name) {
         try {
             configFile = YamlDocument.create(new File(ExamplePlugin.getInstance().getDataFolder(), name),
-                    GeneralSettings.DEFAULT,
+                    getClass().getResourceAsStream("/" + name),
+                    GeneralSettings.builder().setUseDefaults(false).build(),
                     LoaderSettings.builder().setAutoUpdate(true).build(),
                     DumperSettings.DEFAULT,
                     UpdaterSettings.builder().setVersioning(new BasicVersioning("config-version"))
@@ -72,7 +73,7 @@ public class ConfigFile {
 
     public String getString(String path) {
         if (configFile.contains(path)) {
-            return configFile.getString(path, "String at path '" + path + "' not found.").replace("|", "\u2503");
+            return configFile.getString(path, "String at path '" + path + "' not found.").replace("|", "┃");
         }
 
         return null;
