@@ -8,7 +8,6 @@ import org.sqlite.SQLiteDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.UUID;
 
 public class SQLiteManager {
 
@@ -16,7 +15,9 @@ public class SQLiteManager {
 
     public SQLiteManager(String path) {
         Color.log("&eEnabling SQLite support!");
+
         Exception ex = connect(path);
+
         if (ex != null) {
             Color.log("&cThere was an error connecting to your database. Here's the suspect: &e" + ex.getLocalizedMessage());
             ex.printStackTrace();
@@ -24,6 +25,7 @@ public class SQLiteManager {
         } else {
             Color.log("&aManaged to successfully connect to: &e" + path + "&a!");
         }
+
         createT();
     }
 
@@ -40,6 +42,7 @@ public class SQLiteManager {
             dataSource = null;
             return exception;
         }
+
         return null;
     }
 
@@ -48,11 +51,7 @@ public class SQLiteManager {
     }
 
     public void createTables() {
-        createTable("ExamplePlugin",
-                "uuid VARCHAR(255) NOT NULL PRIMARY KEY, " +
-                        "name VARCHAR(255) NOT NULL, " +
-                        "points BIGINT DEFAULT 0 NOT NULL"
-        );
+        createTable("ExamplePlugin", "uuid VARCHAR(36) NOT NULL PRIMARY KEY, name VARCHAR(16), points BIGINT(50)");
     }
 
     public boolean isInitiated() {
@@ -102,9 +101,9 @@ public class SQLiteManager {
     public void execute(String query, Object... values) {
         new Thread(() -> {
             try (Connection resource = getConnection(); PreparedStatement statement = resource.prepareStatement(query)) {
-                for (int i = 0; i < values.length; i++) {
+                for (int i = 0; i < values.length; i++)
                     statement.setObject((i + 1), values[i]);
-                }
+
                 statement.execute();
             } catch (SQLException exception) {
                 Color.log("An error occurred while executing an update on the database.");
@@ -124,9 +123,9 @@ public class SQLiteManager {
     public void select(String query, SelectCall callback, Object... values) {
         new Thread(() -> {
             try (Connection resource = getConnection(); PreparedStatement statement = resource.prepareStatement(query)) {
-                for (int i = 0; i < values.length; i++) {
+                for (int i = 0; i < values.length; i++)
                     statement.setObject((i + 1), values[i]);
-                }
+
                 callback.call(statement.executeQuery());
             } catch (SQLException exception) {
                 Color.log("An error occurred while executing a query on the database.");

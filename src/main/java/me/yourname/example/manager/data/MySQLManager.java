@@ -10,7 +10,6 @@ import org.bukkit.Bukkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.UUID;
 
 public class MySQLManager {
 
@@ -23,7 +22,9 @@ public class MySQLManager {
 
     public MySQLManager() {
         Color.log("&eEnabling MySQL support!");
+
         Exception ex = connect();
+
         if (ex != null) {
             Color.log("&cThere was an error connecting to your database. Here's the suspect: &e" + ex.getLocalizedMessage());
             ex.printStackTrace();
@@ -31,6 +32,7 @@ public class MySQLManager {
         } else {
             Color.log("&aManaged to successfully connect to: &e" + database + "&a!");
         }
+
         createT();
     }
 
@@ -41,6 +43,7 @@ public class MySQLManager {
     private Exception connect() {
         try {
             HikariConfig config = new HikariConfig();
+
             Class.forName("org.mariadb.jdbc.Driver");
             config.setDriverClassName("org.mariadb.jdbc.Driver");
             config.setJdbcUrl("jdbc:mariadb://" + host + ':' + port + '/' + database);
@@ -56,6 +59,7 @@ public class MySQLManager {
             exception.printStackTrace();
             return exception;
         }
+
         return null;
     }
 
@@ -64,7 +68,7 @@ public class MySQLManager {
     }
 
     public void createTables() {
-        createTable("ExamplePlugin","uuid VARCHAR(36) NOT NULL PRIMARY KEY, name VARCHAR(16), points BIGINT(50)");
+        createTable("ExamplePlugin", "uuid VARCHAR(36) NOT NULL PRIMARY KEY, name VARCHAR(16), points BIGINT(50)");
     }
 
     public boolean isInitiated() {

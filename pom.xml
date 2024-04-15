@@ -44,27 +44,27 @@
                     <relocations>
                         <relocation>
                             <pattern>com.cryptomorin.xseries</pattern>
-                            <shadedPattern>me.yourname.example.libs.xseries</shadedPattern>
+                            <shadedPattern>me.yourname.example.libs</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>net.byteflux.libby</pattern>
-                            <shadedPattern>me.yourname.example.libs.libby</shadedPattern>
+                            <shadedPattern>me.yourname.example.libs</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>me.gabytm.util.actions</pattern>
-                            <shadedPattern>me.yourname.example.libs.actions</shadedPattern>
+                            <shadedPattern>me.yourname.example.libs</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>me.yourname.example.libs.bstats</shadedPattern>
+                            <shadedPattern>me.yourname.example.libs</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>dev.dejvokep.boostedyaml</pattern>
-                            <shadedPattern>me.yourname.example.libs.boostedyaml</shadedPattern>
+                            <shadedPattern>me.yourname.example.libs</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.tcoded.folialib</pattern>
-                            <shadedPattern>me.yourname.example.libs.folialib</shadedPattern>
+                            <shadedPattern>me.yourname.example.libs</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -124,7 +124,7 @@
         <dependency>
             <groupId>com.github.cryptomorin</groupId>
             <artifactId>XSeries</artifactId>
-            <version>9.9.0</version>
+            <version>9.10.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

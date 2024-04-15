@@ -18,10 +18,8 @@ import me.yourname.example.manager.data.MySQLManager;
 import me.yourname.example.manager.data.SQLiteManager;
 import me.yourname.example.utilities.DownloadUtil;
 import me.yourname.example.utilities.chat.Color;
-import me.yourname.example.utilities.command.CommandList;
 import me.yourname.example.utilities.command.SubCommand;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -140,15 +138,14 @@ public final class ExamplePlugin extends JavaPlugin {
     private void loadCommands() {
         try {
             getCommandManager().createCoreCommand(this, getCommands().EXAMPLE_COMMAND_NAME, "An Example plugin command",
-                    "/" + getCommands().EXAMPLE_COMMAND_NAME, new CommandList() {
-                        @Override
-                        public void displayCommandList(CommandSender commandSender, List<SubCommand> list) {
-                            String baseColor = getConfigFile().getString("messages.base-command-color");
-                            Color.sendCustomMessage(commandSender, baseColor + "Running <g:#8A2387:#E94057:#F27121>" + getDescription().getName() + baseColor + " v" + getDescription().getVersion());
-                            Color.sendCustomMessage(commandSender, baseColor + "Plugin created by: <g:#41E0F0:#FF8DCE>" + getDescription().getAuthors().get(0));
-                            Color.sendMessage(commandSender, "messages.base-command-help");
-                        }
-                    }, getCommands().EXAMPLE_COMMAND_ALIASES,
+                    "/" + getCommands().EXAMPLE_COMMAND_NAME,
+                    (commandSender, list) -> {
+                        String baseColor = getConfigFile().getString("messages.base-command-color");
+                        Color.sendCustomMessage(commandSender, baseColor + "Running <g:#8A2387:#E94057:#F27121>" + getDescription().getName() + baseColor + " v" + getDescription().getVersion());
+                        Color.sendCustomMessage(commandSender, baseColor + "Plugin created by: <g:#41E0F0:#FF8DCE>" + getDescription().getAuthors().get(0));
+                        Color.sendMessage(commandSender, "messages.base-command-help");
+                    },
+                    getCommands().EXAMPLE_COMMAND_ALIASES,
                     HelpCommand.class,
                     VersionCommand.class,
                     ReloadCommand.class

@@ -15,15 +15,16 @@ public class MenuListener implements Listener {
     public void onMenuClick(InventoryClickEvent event) {
         InventoryHolder holder = event.getInventory().getHolder();
 
-        if (holder instanceof Menu) {
-            event.setCancelled(true);
+        if (!(holder instanceof Menu))
+            return;
 
-            if (event.getCurrentItem() == null)
-                return;
+        event.setCancelled(true);
 
-            Menu menu = (Menu) holder;
-            menu.handleMenu(event);
-        }
+        if (event.getCurrentItem() == null)
+            return;
+
+        Menu menu = (Menu) holder;
+        menu.handleMenu(event);
     }
 
     @EventHandler
@@ -31,8 +32,10 @@ public class MenuListener implements Listener {
         InventoryHolder holder = event.getInventory().getHolder();
         Player player = (Player) event.getPlayer();
 
-        if (holder instanceof Menu)
-            ExamplePlugin.getInstance().getMenuManager().remove(player);
+        if (!(holder instanceof Menu))
+            return;
+
+        ExamplePlugin.getInstance().getMenuManager().remove(player);
     }
 
 }
